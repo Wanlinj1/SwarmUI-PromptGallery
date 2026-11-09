@@ -1,0 +1,22 @@
+# Build output
+bin/
+obj/
+
+# IDE / OS
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+.DS_Store
+Thumbs.db
+
+# Packs are distributed separately, never committed here
+*.zip
+Packs/
+
+# Local Claude Code settings (machine-specific paths)
+.claude/
+
+# Internal design notes, kept local
+docs/*.md

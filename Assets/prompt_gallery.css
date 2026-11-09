@@ -1,0 +1,377 @@
+.pg-root {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.pg-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.25rem 0.4rem;
+    flex: 0 0 auto;
+}
+
+.pg-toolbar-spacer {
+    flex: 1 1 auto;
+}
+
+.pg-profile-select {
+    min-width: 8rem;
+    max-width: 16rem;
+}
+
+.pg-hint {
+    font-size: 0.8rem;
+    opacity: 0.7;
+    padding: 0 0.5rem 0.25rem 0.5rem;
+    white-space: normal;
+    flex: 0 0 auto;
+}
+
+.pg-empty {
+    padding: 1rem;
+    white-space: normal;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+    flex: 0 0 auto;
+}
+
+.pg-browser {
+    flex: 1 1 auto;
+    min-height: 0;
+}
+
+.pg-readonly .pg-edit-only,
+.pg-no-profile .pg-needs-profile,
+.pg-no-profile #pg_edit_profile_button,
+.pg-no-profile .pg-browser,
+.pg-no-profile .pg-hint {
+    display: none !important;
+}
+
+/* Cards already present in the prompt get an accent outline. */
+.pg-card-in-prompt {
+    outline: 2px solid var(--emphasis, #3b82f6);
+    outline-offset: -2px;
+}
+
+.pg-form-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.6rem;
+}
+
+.pg-form-row > label {
+    min-width: 6rem;
+}
+
+.pg-form-row > input,
+.pg-form-row > select {
+    flex: 1 1 auto;
+}
+
+.pg-form-row-block {
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.pg-image-drop {
+    border: 2px dashed var(--light-border, #888);
+    border-radius: 0.4rem;
+    min-height: 8rem;
+    max-height: 16rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    overflow: hidden;
+    padding: 0.25rem;
+    text-align: center;
+    opacity: 0.9;
+}
+
+.pg-image-drop-hover {
+    border-color: var(--emphasis, #3b82f6);
+}
+
+.pg-image-preview {
+    max-width: 100%;
+    max-height: 15rem;
+    object-fit: contain;
+}
+
+.pg-image-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    margin-top: 0.4rem;
+}
+
+/* Highlight while image files are dragged over the gallery for import. */
+.pg-drop-hover {
+    outline: 2px dashed var(--emphasis, #3b82f6);
+    outline-offset: -4px;
+}
+
+.pg-profile-source-note {
+    font-size: 0.85rem;
+    opacity: 0.8;
+    white-space: normal;
+}
+
+.pg-gen-status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.2rem 0.5rem;
+    font-size: 0.85rem;
+    white-space: normal;
+    flex: 0 0 auto;
+}
+
+/* ===================== Adaptive layout =====================
+ * The panel can sit in a narrow sidebar or the wide, short bottom bar; 'fitLayout' in the JS sets these classes from its size. */
+
+.pg-more-button {
+    display: none;
+}
+
+.pg-compact .pg-overflow {
+    display: none !important;
+}
+
+.pg-compact .pg-more-button {
+    display: inline-block;
+}
+
+.pg-compact .pg-profile-select {
+    flex: 1 1 6rem;
+    max-width: none;
+    min-width: 5rem;
+}
+
+.pg-stacked .pg-profile-label,
+.pg-short .pg-hint {
+    display: none;
+}
+
+/* Depth is rarely changed: not worth a row of a narrow panel. */
+.pg-compact #pg_browser .depth-number-input {
+    display: none;
+}
+
+.pg-compact #pg_browser .browser-header-buttons > span:has(> .depth-number-input) {
+    display: none;
+}
+
+/* Thin scrollbars (Firefox draws thick ones by default). */
+#pg_browser .browser-folder-tree-container,
+#pg_browser .browser-content-container {
+    scrollbar-width: thin;
+}
+
+/* Fit the panel's height exactly (Swarm's browser has a 10rem minimum, which overflows a short bottom bar). */
+#pg_browser .browser-folder-tree-container,
+#pg_browser .browser-folder-tree-splitter,
+#pg_browser .browser-fullcontent-container {
+    height: 100%;
+}
+
+/* Header bar (format, refresh, up, depth, filter): wrap instead of scrolling sideways. */
+#pg_browser .browser-fullcontent-container {
+    display: inline-flex;
+    flex-direction: column;
+}
+
+#pg_browser .browser-header-bar {
+    height: auto;
+    overflow: visible;
+    white-space: normal;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.25rem;
+    padding-bottom: 0.2rem;
+    flex: 0 0 auto;
+}
+
+#pg_browser .browser-header-buttons {
+    display: contents;
+}
+
+#pg_browser .browser-header-bar .input_filter_container {
+    flex: 1 1 4rem;
+    min-width: 4rem;
+    max-width: 14rem;
+}
+
+#pg_browser .browser-header-bar .input_filter_container input {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#pg_browser .browser-content-container {
+    flex: 1 1 auto;
+    height: auto;
+    min-height: 0;
+}
+
+/* Stacked: folder tree on top (drag its bottom edge to resize), cards below. */
+.pg-stacked #pg_browser {
+    display: flex;
+    flex-direction: column;
+}
+
+.pg-stacked #pg_browser .browser-folder-tree-container {
+    width: 100% !important;
+    height: 30%;
+    min-height: 4rem;
+    max-height: 60%;
+    flex: 0 0 auto;
+    resize: vertical;
+    border-bottom: 1px solid var(--light-border, #555);
+}
+
+.pg-stacked #pg_browser .browser-folder-tree-splitter {
+    display: none;
+}
+
+.pg-stacked #pg_browser .browser-fullcontent-container {
+    width: 100% !important;
+    margin-left: 0;
+    flex: 1 1 auto;
+    min-height: 0;
+    height: auto;
+}
+
+/* ===================== Full image popup ===================== */
+
+.pg-image-modal .modal-dialog.pg-image-modal-inner {
+    position: fixed;
+    inset: 2vh 2vw;
+    max-width: none;
+    margin: 0;
+    transform: none;
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    cursor: zoom-out;
+}
+
+.pg-image-modal img {
+    max-width: 100%;
+    max-height: calc(100% - 4rem);
+    object-fit: contain;
+    min-height: 0;
+    box-shadow: 0 0 1.5rem rgba(0, 0, 0, 0.6);
+}
+
+.pg-image-modal-caption {
+    max-width: min(60rem, 100%);
+    text-align: center;
+    white-space: normal;
+    background: var(--background-panel, rgba(0, 0, 0, 0.7));
+    padding: 0.3rem 0.7rem;
+    border-radius: 0.4rem;
+    font-size: 0.9rem;
+}
+
+.pg-image-modal-nav {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    pointer-events: none;
+}
+
+.pg-image-modal-nav button {
+    pointer-events: auto;
+    font-size: 2rem;
+    line-height: 1;
+    padding: 0.2rem 0.8rem;
+    opacity: 0.75;
+    cursor: pointer;
+}
+
+.pg-image-modal-nav button:hover {
+    opacity: 1;
+}
+
+.pg-folder-prompt-example {
+    margin-top: 0.5rem;
+    font-style: italic;
+}
+
+/* ===================== In-page dialog (replaces confirm/prompt) ===================== */
+
+.pg-dialog-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 3000;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.pg-dialog {
+    background: var(--background, #222);
+    color: var(--text, #eee);
+    border: 1px solid var(--light-border, #555);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    width: min(32rem, 100%);
+    max-height: 90vh;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.5);
+}
+
+.pg-dialog-message {
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.pg-dialog-input {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.pg-dialog-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+}
+
+/* Placeholder of a card without an image, cropped to the folder's preview shape. */
+.pg-card-placeholder img {
+    object-fit: cover;
+    width: auto;
+}
+.pg-aspect-1-1 img { aspect-ratio: 1 / 1; }
+.pg-aspect-4-3 img { aspect-ratio: 4 / 3; }
+.pg-aspect-3-2 img { aspect-ratio: 3 / 2; }
+.pg-aspect-8-5 img { aspect-ratio: 8 / 5; }
+.pg-aspect-16-9 img { aspect-ratio: 16 / 9; }
+.pg-aspect-21-9 img { aspect-ratio: 21 / 9; }
+.pg-aspect-3-4 img { aspect-ratio: 3 / 4; }
+.pg-aspect-2-3 img { aspect-ratio: 2 / 3; }
+.pg-aspect-5-8 img { aspect-ratio: 5 / 8; }
+.pg-aspect-9-16 img { aspect-ratio: 9 / 16; }
+.pg-aspect-9-21 img { aspect-ratio: 9 / 21; }
