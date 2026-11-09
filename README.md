@@ -69,7 +69,7 @@ The cards are English prose, written for MOSS-Image and other models that unders
 
 ![Previews from the MOSS Starter pack](docs/images/previews.jpg)
 
-Download `MOSS Starter.zip` from the [Releases](../../releases) page, then in the panel use **+ Profile → Start from → Pack file (.zip)**.
+Download `MOSS-Starter.zip` from the [latest release](https://github.com/Wanlinj1/SwarmUI-PromptGallery/releases/latest), then in the panel use **+ Profile → Start from → Pack file (.zip)**.
 
 The previews were made with an anime-leaning MOSS-Image finetune, so they lean that way too. Regenerate any folder with your own model:
 the pack brings its preview prompts, shapes and seed along.
